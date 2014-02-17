@@ -1,0 +1,5 @@
+parallel:
+      echo Start
+      echo Compile parseutil,echo Compile util,echo Compile main
+      echo Stop
+end
