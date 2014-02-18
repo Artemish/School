@@ -13,12 +13,17 @@
 #define false 0
 typedef int bool;
 
+void run_tests();
 void custmake_usage(char*);
 void parse_file(char*);
 bool isBlank(char*);
 
+typedef struct target_list {
+    struct target_node* first;
+} target_list;
+
 typedef struct target {
-	struct target_node* dependencies;
+	struct dep_node* dependencies;
 	struct cmd_node* commands;
 	char* name;
 } target;
@@ -33,6 +38,11 @@ typedef struct target_node {
 	struct target_node* next;
 } target_node;
 
-target_node* makeNode(char* name);
-void addTargetNode(target_node* listNode, char* name);
+typedef struct dep_node {
+	struct target* element;
+	struct dep_node* next;
+} dep_node;
+
+target_node* makeTargetNode(char* name);
+target_node* addTargetNode(target_list* listNode, char* name);
 #endif
